@@ -4,7 +4,7 @@ export LSCOLORS=cxFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 alias b='cd ~/Box5Scores/'
 alias bcc='cd ~/Box5Scores/Box5CloudCode/'export PATH="/usr/local/sbin:$PATH"
-alias brewup='brew update && brew upgrade'
+alias brewup='echo "Updating and Upgrading brew....." ; brew update && brew upgrade'
 eval "$(thefuck-alias fuck)"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
