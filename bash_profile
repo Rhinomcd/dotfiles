@@ -18,3 +18,5 @@ alias hax='cd ~/Projects/Hathway/'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 function google() { open /opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app "http://www.google.com/search?q= $1"; }
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
+alias vlc='/opt/homebrew-cask/Caskroom/vlc/2.2.1/VLC.app/Contents/MacOS/VLC'
