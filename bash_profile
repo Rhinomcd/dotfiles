@@ -14,7 +14,7 @@ eval "$(thefuck --alias fuck)"
 alias b='cd ~/Projects/PersonalProjects/Box5Scores/'
 alias bcc='cd ~/Projects/PersonalProjects/Box5Scores/Box5CloudCode/'
 alias h='cd ~/Projects/HouseProjects/'
-alias hax='cd ~/Projects/Hathway/'
+alias p='cd ~/Projects/'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 function google() { open /opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app "http://www.google.com/search?q= $1"; }
