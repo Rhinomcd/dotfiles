@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/root/JavaFunTime/src'
+let g:netrw_dirhist_2='/root/JavaFunTime/src/JavaFunTime'
+let g:netrw_dirhist_3='/root/JavaFunTime/src/JavaFunTime/src'
+let g:netrw_dirhist_4='/root/JavaFunTime/src/JavaFunTime/src/main'
+let g:netrw_dirhist_5='/root/JavaFunTime/src/JavaFunTime/src/main/java'
+let g:netrw_dirhist_6='/root/JavaFunTime/src/JavaFunTime/src/main/java/Rhinomcd'
