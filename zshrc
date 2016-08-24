@@ -85,3 +85,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+=======
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /Users/ryanmcdonough/.travis/travis.sh ] && source /Users/ryanmcdonough/.travis/travis.sh
+>>>>>>> origin/master
