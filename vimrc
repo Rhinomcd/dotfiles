@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 set nocompatible
 filetype off
 set number
@@ -59,12 +58,10 @@ Plugin 'docunext/closetag.vim'
 call vundle#end()
 filetype plugin indent on
 let g:EclimCompletionMethod = 'omnifunc'
-=======
 syntax enable
 set history=100
 set hidden
 set number
 set incsearch
 set cindent
->>>>>>> origin/master
 
