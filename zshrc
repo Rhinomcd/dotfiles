@@ -85,3 +85,5 @@ export LD_LIBRARY_PATH=/home/rmcdono/local/lib:$LD_LIBRARY_PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+eval $(cat /home/rmcdono/.LS_COLORS)
