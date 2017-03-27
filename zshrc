@@ -87,3 +87,12 @@ export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval $(cat $HOME/.LS_COLORS)
+
+
+ssh() {
+    tmux rename-window "$*"
+    command ssh "$@"
+    echo "Counting to 60"
+    sleep 60 && exit
+    tmux rename-window "bash (exited ssh)"
+}
