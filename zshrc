@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/rmcdono/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,8 +59,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT="$HOME/local/go"
-export PATH="$GOROOT/bin:/home/rmcdono/local/bin:$PATH"
-export LD_LIBRARY_PATH=/home/rmcdono/local/lib:$LD_LIBRARY_PATH
+export PATH="$GOROOT/bin:$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -86,4 +86,4 @@ export LD_LIBRARY_PATH=/home/rmcdono/local/lib:$LD_LIBRARY_PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval $(cat /home/rmcdono/.LS_COLORS)
+eval $(cat $HOME/.LS_COLORS)
