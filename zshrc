@@ -87,3 +87,6 @@ export LD_LIBRARY_PATH=/home/rmcdono/local/lib:$LD_LIBRARY_PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval $(cat /home/rmcdono/.LS_COLORS)
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    export PATH="C:/Users/rmcdono/AppData/Local/Android/sdk/platform-tools:C:/Users/rmcdono/AppData/Local/Android/sdk/build-tools/24.0.3:$PATH"
+fi
