@@ -8,9 +8,20 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="gitconfig vimrc zshrc tmux.conf LS_COLORS"    # list of files/folders to symlink in homedir
+files="gitconfig vimrc zshrc tmux.conf LS_COLORS tcshrc"    # list of files/folders to symlink in homedir
 
 ##########
+
+if [ -d $HOME/.oh-my-zsh/ ]; then
+    # TODO: get oh-my-zsh
+    mv $HOME/.oh-my-zsh/custom/aliases.zsh $olddir/.oh-my-zsh/custom/aliases.zsh
+    mv  $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme  $olddir/.oh-my-zsh/themes/rmcdono.zsh-theme 
+    ln -s $HOME/.oh-my-zsh/custom/aliases.zsh $dir/aliases.zsh
+    ln -s $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme $dir/rmcdono.zsh-theme
+fi
+if [ -d $HOME/.vim/bundles/vundle ]; then
+    # get vundle
+fi
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -29,3 +40,4 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+

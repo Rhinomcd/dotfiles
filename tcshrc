@@ -1,0 +1,18 @@
+# .tcshrc
+setenv LS_COLORS di=36
+setenv PATH $HOME/local/bin:$PATH
+
+if ($?prompt) then
+        setenv SHELL $HOME/local/bin/zsh
+        exec $HOME/local/bin/zsh
+endif
+
+set prompt="[%B%m%b] %n %t %d %~>"
+set history=250
+set savehist=1000
+
+source ~/.alias
+complete cvs p/1/"(add admin annotate checkout commit diff edit \
+                   editors export history import init log login \
+                   rdiff release remove rtag status tag unedit \
+                   update watch)"/
