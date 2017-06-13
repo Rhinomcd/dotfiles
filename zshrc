@@ -46,7 +46,7 @@ if [[ -a "ucp/env.sh" ]]; then
 	cd
 fi
 ssh() {
-    if [ -z $TMUX ]; then
+    if [ ! -z $TMUX ]; then
         tmux rename-window "$*"
     fi
     command ssh "$@"
