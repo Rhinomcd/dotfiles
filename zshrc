@@ -42,7 +42,7 @@ eval $(cat $HOME/.LS_COLORS)
 export COMPOSE_HTTP_TIMEOUT=240
 if [[ -a "ucp/env.sh" ]]; then
 	cd ucp
-	. env.sh
+	. ./env.sh
 	cd
 fi
 ssh() {
