@@ -3,3 +3,9 @@
 	email = rhinomcd@gmail.com
 [push]
 	default = simple
+[diff]
+	tool = vimdiff
+[alias]
+	d = difftool
+[difftool]
+	prompt = false

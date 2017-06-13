@@ -1,92 +1,51 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/rmcdono/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+DISABLE_AUTO_UPDATE="true"
+export ZSH=$HOME/.oh-my-zsh
+  
 ZSH_THEME="rmcdono"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+# ================================================================================
+# Ab Initio
+export AB_BASE=/opt/abinitio
+export AB_HOME=${AB_BASE}/abinitio-V3-3-2
+export AB_BIN=${AB_HOME}/bin
+export AB_AIR_HOME=${AB_BASE}/abinitio-V3-3-2
+export AB_AIR_BRANCH=main
+export AB_WORK_DIR=${AB_BASE}/work
+export AB_DATA_DIR=${AB_WORK_DIR}/data
+export AB_OPS_DIR=${AB_DATA_DIR}/ops
+export AB_APPLICATION_HUB=${AB_BASE}/abinitio-app-hub
+export AB_ADMIN_DIR=/opt/transient/data/admin
+export AB_AIR_ROOT=//ablapp00.slo-devapp.truelink.com/opt/abinitio/eme/repodev
+#export AB_HOST_ALIAS_FILE=/home/abiadm/abconfig/admin/mfs/ab_host_alias
+alias abiadm="ssh -l abiadm `hostname`"
+alias abiappl="ssh -l abiappl `hostname`"
+#==================================================================================
 
 export GOROOT="$HOME/local/go"
-export PATH="$GOROOT/bin:/home/rmcdono/local/bin:$PATH"
-export LD_LIBRARY_PATH=/home/rmcdono/local/lib:$LD_LIBRARY_PATH
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export PATH="$GOROOT/bin:$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval $(cat /home/rmcdono/.LS_COLORS)
-if [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    export PATH="C:/Users/rmcdono/AppData/Local/Android/sdk/platform-tools:C:/Users/rmcdono/AppData/Local/Android/sdk/build-tools/24.0.3:$PATH"
+if [ $HOST = tool006 ]; then
+	alias dockToLB="/opt/truelink/prod-tools/docker/current/dockToLB/dockToLB.pl -env=slo-dev"
+	alias modifyBigIP="/opt/truelink/prod-tools/f5/current/modifyBigipPool.pl"
 fi
+
+if [ -z $TMUX ] && [ -t 0 ]; then
+	tmux
+fi
+eval $(cat $HOME/.LS_COLORS)
+
+#docker compose settings because we're slowww
+export COMPOSE_HTTP_TIMEOUT=240
+if [[ -a "ucp/env.sh" ]]; then
+	cd ucp
+	. env.sh
+	cd
+fi
+ssh() {
+    tmux rename-window "$*"
+    command ssh "$@"
+}
