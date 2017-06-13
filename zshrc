@@ -33,7 +33,7 @@ if [ $HOST = tool006 ]; then
 	alias modifyBigIP="/opt/truelink/prod-tools/f5/current/modifyBigipPool.pl"
 fi
 
-if [ -z $TMUX ] && [ -t 0 ]; then
+if [ -z $TMUX ] && [ -t 0 ] && [[ $HOSTNAME =~ '.*\.slo-off\.truelink\.com' || $HOSTNAME =~ '.*\.wrkgrp\.slo\..*' ]]; then
 	tmux
 fi
 eval $(cat $HOME/.LS_COLORS)
