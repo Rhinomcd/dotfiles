@@ -33,6 +33,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'nvie/vim-flake8'
 call vundle#end()
 filetype plugin indent on
 
