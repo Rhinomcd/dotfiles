@@ -7,6 +7,10 @@ if ($?prompt) then
         exec $HOME/local/bin/zsh
 endif
 
+#if ($HOST == ablrun01.slo-devapp.truelink.com) then
+    #    ssh abiappl@$HOST
+    #endif
+
 set prompt="[%B%m%b] %n %t %d %~>"
 set history=250
 set savehist=1000

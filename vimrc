@@ -7,6 +7,7 @@ set hidden
 set number
 set incsearch
 set cindent
+colorscheme desert
 
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -48,3 +49,4 @@ set backspace=2
 let g:flake8_cmd="flake8"
 set encoding=utf-8
 set laststatus=2
+let g:flake8_show_in_file=1  " show
