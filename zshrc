@@ -21,11 +21,14 @@ export AB_AIR_ROOT=//ablapp00.slo-devapp.truelink.com/opt/abinitio/eme/repodev
 #export AB_HOST_ALIAS_FILE=/home/abiadm/abconfig/admin/mfs/ab_host_alias
 alias abiadm="ssh -l abiadm `hostname`"
 alias abiappl="ssh -l abiappl `hostname`"
+alias flake8="python -m flake8"
 #==================================================================================
 
 export GOROOT="$HOME/local/go"
 export PATH="$GOROOT/bin:$HOME/local/bin:$PATH"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
+export PATH=$PATH:$HOME/.local/bin
 
 
 if [ $HOST = tool006 ]; then
@@ -33,9 +36,6 @@ if [ $HOST = tool006 ]; then
 	alias modifyBigIP="/opt/truelink/prod-tools/f5/current/modifyBigipPool.pl"
 fi
 
-if [ -z $TMUX ] && [ -t 0 ] && [[ $HOSTNAME =~ '.*\.slo-off\.truelink\.com' || $HOSTNAME =~ '.*\.wrkgrp\.slo\..*' ]]; then
-	tmux
-fi
 eval $(cat $HOME/.LS_COLORS)
 
 #docker compose settings because we're slowww
@@ -51,3 +51,8 @@ ssh() {
     fi
     command ssh "$@"
 }
+
+if [[ $HOST = "boron.slo-off.truelink.com" || $HOST = "dblmidev00.wrkgrp.slo.tuint.com" ]]; then
+    alias vim="/usr/bin/vim"
+fi
+export TMOUT=172800
