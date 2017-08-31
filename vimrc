@@ -7,6 +7,7 @@ set hidden
 set number
 set incsearch
 set cindent
+colorscheme desert
 
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -33,6 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'nvie/vim-flake8'
 call vundle#end()
 filetype plugin indent on
 
@@ -41,3 +43,5 @@ hi DiffChange       ctermbg=235  ctermfg=103  guibg=#262626 guifg=#8787af cterm=
 hi DiffDelete       ctermbg=235  ctermfg=131  guibg=#262626 guifg=#af5f5f cterm=reverse        gui=reverse
 hi DiffText         ctermbg=235  ctermfg=208  guibg=#262626 guifg=#ff8700 cterm=reverse        gui=reverse
 set backspace=2
+
+let g:flake8_show_in_file=1  " show
