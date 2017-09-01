@@ -1,14 +1,13 @@
 if !exists("g:syntax_on")
     syntax enable
 endif
-
 set history=100
 set hidden
 set number
 set incsearch
 set cindent
 colorscheme desert
-
+l
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Jump to anywhere you want with minimal keystrokes, with just one key
