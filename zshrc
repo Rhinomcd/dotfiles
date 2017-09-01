@@ -34,7 +34,7 @@ export PATH=$PATH:$HOME/.local/bin
 # =============================================================================== 
 
 export GOROOT="$HOME/local/go"
-export PATH="$AB_BIN:$GOROOT/bin:$PATH:$HOME/local/bin:$PATH:$HOME/local/pip"
+export PATH="$AB_BIN:$GOROOT/bin:$HOME/local/bin:$PATH:$HOME/local/pip"
 export DOCKER_API_VERSION=1.23
 
 export PYTHONPATH=$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
