@@ -1,6 +1,6 @@
 [user]
 	name = Ryan McDonough
-	email = rhinomcd@gmail.com
+	email = rmcdono@transunion.com
 [push]
 	default = simple
 [diff]
@@ -9,3 +9,7 @@
 	d = difftool
 [difftool]
 	prompt = false
+[mmerge]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
