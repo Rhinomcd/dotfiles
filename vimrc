@@ -39,6 +39,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
@@ -58,3 +59,4 @@ set pastetoggle=<F2>
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+runtime macros/matchit.vim
