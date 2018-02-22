@@ -42,6 +42,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
@@ -80,3 +81,4 @@ endfunction
 
 autocmd BufRead *.tuc :call SplitTU4R()
 autocmd BufWrite *.tuc :call UnSplitTU4R()
+runtime macros/matchit.vim
