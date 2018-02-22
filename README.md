@@ -1,4 +1,4 @@
-#Ryan McDonough's Dotfiles
+# Ryan McDonough's Dotfiles
 ----
 Inspired by https://github.com/thoughtbot/dotfiles
 
