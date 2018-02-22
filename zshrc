@@ -1,6 +1,7 @@
 export HOME="/home/rmcdono"
 DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.oh-my-zsh
+setopt share_history
   
 ZSH_THEME="rmcdono-pizza"
 plugins=(git)
@@ -19,9 +20,16 @@ export AB_DATA_DIR=${AB_WORK_DIR}/data
 export AB_OPS_DIR=${AB_DATA_DIR}/ops
 export AB_APPLICATION_HUB=${AB_BASE}/abinitio-app-hub
 export AB_ADMIN_DIR=/opt/transient/data/admin
-export AB_AIR_ROOT=//ablapp01.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
 alias abiadm="ssh -l abiadm `hostname`"
 alias abiappl="ssh -l abiappl `hostname`"
+alias rsand="cd /opt/persistent/qa/code/apps/sandbox/ebop_rmcdono"
+
+if [ $HOSTNAME = "ablrun00.slo-devapp.truelink.com" ]; then
+    export AB_AIR_ROOT=//ablapp00.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
+elif [ $HOSTNAME = "ablrun01.slo-devapp.truelink.com" ]; then
+    export AB_AIR_ROOT=//ablapp01.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
+fi
+
 # ==================================================================================
 
 export GOROOT="$HOME/local/go"
@@ -66,14 +74,15 @@ ssh() {
     command ssh "$@"
 }
 
-if [ $HOSTNAME = ablrun01.slo-devapp.truelink.com ] && [ $USER = abiappl ]; then
+if [ $USER = abiappl ]; then
     export HOME=/home/abiappl
 fi
 
-if [ $HOSTNAME = ablrun00.slo-devapp.truelink.com ]; then
-    alias air='sl'
-    alias abiappl='sl -altF'
-fi
+#if [ $HOSTNAME = ablrun00.slo-devapp.truelink.com ]; then
+    #alias air='sl'
+    #alias abiappl='sl -altF'
+#fi
 
 export TMOUT=172800
 alias flake8="python -m flake8"
+

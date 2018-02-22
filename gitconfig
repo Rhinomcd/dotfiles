@@ -2,10 +2,12 @@
 	name = Ryan McDonough
 	email = rmcdono@transunion.com
 [push]
-	default = simple
+	default = current
 [diff]
 	tool = vimdiff
 [alias]
 	d = difftool
 [difftool]
 	prompt = false
+[color]
+	ui = true
