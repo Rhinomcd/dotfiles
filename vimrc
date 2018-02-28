@@ -82,3 +82,6 @@ endfunction
 autocmd BufRead *.tuc :call SplitTU4R()
 autocmd BufWrite *.tuc :call UnSplitTU4R()
 runtime macros/matchit.vim
+
+"sh files 2 spaces
+autocmd Filetype sh setlocal ts=2 sw=2 expandtab

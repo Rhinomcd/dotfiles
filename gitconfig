@@ -13,3 +13,5 @@
 	ui = true
 [core]
 	editor = /home/rmcdono/local/bin/vim
+[merge]
+        tool = vimdiff
