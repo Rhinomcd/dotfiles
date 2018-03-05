@@ -15,6 +15,7 @@ colorscheme desert
 " binding.
 " " `s{char}{label}`
 nmap s <Plug>(easymotion-overwin-f)
+nmap <leader>g :GitGutterLineHighlightsToggle<CR>
 
 set expandtab
 set smarttab
@@ -37,6 +38,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 " Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on

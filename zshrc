@@ -1,7 +1,7 @@
 DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.oh-my-zsh
   
-ZSH_THEME="rmcdono-pizza"
+ZSH_THEME="rmcdono"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
@@ -29,7 +29,6 @@ export PATH="$GOROOT/bin:$HOME/local/bin:$PATH"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
 export PATH=$PATH:$HOME/.local/bin
-source $HOME/.kshrc-overrides
 # =============================================================================== 
 # =============================================================================== 
 
@@ -105,16 +104,4 @@ echo '............................................________
 
 alias sl=f2
 
-=======
-
-if [ $HOSTNAME = ablrun01.slo-devapp.truelink.com ] && [ $USER = abiappl ]; then
-    export HOME=/home/abiappl
-fi
-
-if [ $HOSTNAME = ablrun00.slo-devapp.truelink.com ]; then
-    alias air='sl'
-    alias abiappl='sl -altF'
-fi
-
 export TMOUT=172800
->>>>>>> merge-needles
