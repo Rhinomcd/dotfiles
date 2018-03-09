@@ -1,12 +1,8 @@
 export HOME="/home/rmcdono"
 DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.oh-my-zsh
-<<<<<<< HEAD
-
-=======
 setopt share_history
   
->>>>>>> 96a5412992ee7cc065d2f1d20fe1d057614f5d34
 ZSH_THEME="rmcdono-pizza"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
