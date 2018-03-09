@@ -1,7 +1,12 @@
 export HOME="/home/rmcdono"
 DISABLE_AUTO_UPDATE="true"
 export ZSH=$HOME/.oh-my-zsh
+<<<<<<< HEAD
 
+=======
+setopt share_history
+  
+>>>>>>> 96a5412992ee7cc065d2f1d20fe1d057614f5d34
 ZSH_THEME="rmcdono-pizza"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
@@ -19,9 +24,15 @@ export AB_DATA_DIR=${AB_WORK_DIR}/data
 export AB_OPS_DIR=${AB_DATA_DIR}/ops
 export AB_APPLICATION_HUB=${AB_BASE}/abinitio-app-hub
 export AB_ADMIN_DIR=/opt/transient/data/admin
-export AB_AIR_ROOT=//ablapp01.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
 alias abiadm="ssh -l abiadm `hostname`"
 alias abiappl="ssh -l abiappl `hostname`"
+alias rsand="cd /opt/persistent/qa/code/apps/sandbox/ebop_rmcdono"
+
+if [ $HOSTNAME = "ablrun00.slo-devapp.truelink.com" ]; then
+    export AB_AIR_ROOT=//ablapp00.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
+elif [ $HOSTNAME = "ablrun01.slo-devapp.truelink.com" ]; then
+    export AB_AIR_ROOT=//ablapp01.slo-devapp.truelink.com/opt/abinitio/eme/repoqa
+fi
 
 # =============================================================================== 
 # PATHS                                                                         |
@@ -29,7 +40,6 @@ alias abiappl="ssh -l abiappl `hostname`"
 export GOROOT="$HOME/local/go"
 export GOPATH="/home/rmcdono/local/go/external"
 export PYTHONPATH=$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
-export PATH=$PATH:$HOME/.local/bin
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export PATH="$AB_BIN:$GOROOT/bin:$HOME/local/bin:$PATH:$HOME/local/pip:$HOME/.local/bin"
 
@@ -64,6 +74,8 @@ fi
 # =============================================================================== 
 # Misc Tweaks
 # =============================================================================== 
+
+export TMOUT=172800
 
 export TMOUT=172800
 alias flake8="python -m flake8"

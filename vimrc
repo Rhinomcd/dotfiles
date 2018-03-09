@@ -6,6 +6,8 @@ set hidden
 set number
 set incsearch
 set cindent
+set wrap
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 colorscheme desert
 
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -39,10 +41,19 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
+Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
+
+" pane switching no prefix
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
 
 hi DiffAdd          ctermbg=235  ctermfg=108  guibg=#262626 guifg=#87af87 cterm=reverse        gui=reverse
 hi DiffChange       ctermbg=235  ctermfg=103  guibg=#262626 guifg=#8787af cterm=reverse        gui=reverse
@@ -59,4 +70,18 @@ set pastetoggle=<F2>
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+function SplitTU4R()
+    %s/\(ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|PI01\|CL01\)/\r\1/g
+endfunction
+
+function UnSplitTU4R()
+    %s/\n\(ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|PI01\|CL01\)/\1/g
+endfunction
+
+autocmd BufRead *.tuc :call SplitTU4R()
+autocmd BufWrite *.tuc :call UnSplitTU4R()
 runtime macros/matchit.vim
+
+"sh files 2 spaces
+autocmd Filetype sh setlocal ts=2 sw=2 expandtab

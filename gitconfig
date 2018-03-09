@@ -2,12 +2,16 @@
 	name = Ryan McDonough
 	email = rmcdono@transunion.com
 [push]
-	default = current
+	default = simple
 [diff]
 	tool = vimdiff
 [alias]
 	d = difftool
 [difftool]
 	prompt = false
+[color]
+	ui = true
 [core]
 	editor = /home/rmcdono/local/bin/vim
+[merge]
+        tool = vimdiff
