@@ -16,6 +16,7 @@ colorscheme desert
 " " `s{char}{label}`
 nmap s <Plug>(easymotion-overwin-f)
 nmap <leader>g :GitGutterLineHighlightsToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 set expandtab
 set smarttab
@@ -35,6 +36,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
@@ -53,3 +55,5 @@ let g:flake8_cmd="flake8"
 set encoding=utf-8
 set laststatus=2
 let g:flake8_show_in_file=1  " show
+
+runtime macros/matchit.vim

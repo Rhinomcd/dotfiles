@@ -25,7 +25,7 @@ alias flake8="python -m flake8"
 #==================================================================================
 
 export GOROOT="$HOME/local/go"
-export PATH="$GOROOT/bin:$HOME/local/bin:$PATH"
+export PATH="$GOROOT/bin:$HOME/local/bin:$PATH:~/SDK/groovy-3.0.0-alpha-1/bin"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$HOME/local/lib/python2.7/site-packages:$PYTHONPATH
 export PATH=$PATH:$HOME/.local/bin
@@ -66,15 +66,15 @@ ssh() {
 }
 alias p="cd ~/Documents/Projects"
 export JBOSS_HOME="~/WildFLy/latest"
-OOHWEE="oohwee"
-OWIE=\!
-function f {
-    ls -lt
-    OOHWEE="o${OOHWEE}e"
-    OWIE=$OWIE\!
-    echo $OOHWEE$OWIE
-}
-alias ll=f
+#OOHWEE="oohwee"
+#OWIE=\!
+#function f {
+    #ls -lt
+    #OOHWEE="o${OOHWEE}e"
+    #OWIE=$OWIE\!
+    #echo $OOHWEE$OWIE
+#}
+alias ll='ls -lt'
 function f2 {
 echo '............................................________ 
 ....................................,.-"...................``~., 
@@ -103,5 +103,6 @@ echo '............................................________
 }
 
 alias sl=f2
+eval $(thefuck --alias)
 
 export TMOUT=172800
