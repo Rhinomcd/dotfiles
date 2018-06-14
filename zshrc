@@ -29,9 +29,9 @@ fi
 # Source ZSH Plugins/overrides 
 OVERRIDE_DIR=".zsh.overrides"
 if [[ -d "$OVERRIDE_DIR" ]];then
+    echo > .zsh_overrides.txt
     for i in "$OVERRIDE_DIR"/*
     do
-        echo > .zsh_overrides.txt
         source $i
         echo "$i" >> .zsh_overrides.txt
     done
