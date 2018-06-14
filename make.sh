@@ -30,6 +30,13 @@ if [ ! -d "$HOME/.vim/bundles/vundle" ]; then
     # get vundle
     echo get vundle
 fi
+
+# Link vim ftplugin
+ln -s ./vim/ftplugin "$HOME/.vim/ftplugin"
+if [ ! -d "$HOME/.vim/bundles/vundle" ]; then
+    # get vundle
+    echo get vundle
+fi
 # Link vim ftplugin
 ln -s ./vim/ftplugin "$HOME/.vim/ftplugin"
 

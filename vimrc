@@ -1,12 +1,13 @@
 if !exists("g:syntax_on")
     syntax enable
 endif
-
 set history=100
 set hidden
 set number
 set incsearch
 set cindent
+set wrap
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 colorscheme desert
 
 nmap <leader>g :GitGutterLineHighlightsToggle<CR>
