@@ -23,9 +23,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     # TODO: get oh-my-zsh
     echo "get oh-my-zsh"
 else
-    mv "$HOME/.oh-my-zsh/custom/aliases.zsh" $olddir/.oh-my-zsh/custom/
     mv " $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"  $olddir/.oh-my-zsh/themes/
-    ln -s -f $dir/aliases.zsh "$HOME/.oh-my-zsh/custom/aliases.zsh"
     ln -s -f $dir/rmcdono.zsh-theme "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"
 fi
 if [ ! -d "$HOME/.vim/bundles/vundle" ]; then
