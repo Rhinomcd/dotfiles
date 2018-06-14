@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="gitconfig vimrc zshrc tmux.conf LS_COLORS tcshrc minttyrc"    # list of files/folders to symlink in homedir
+files="zsh_overrides pylintrc gitconfig vimrc zshrc tmux.conf LS_COLORS tcshrc minttyrc"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -19,30 +19,31 @@ mkdir -p $olddir/.oh-my-zsh/custom
 mkdir -p $olddir/.oh-my-zsh/themes
 echo "...done"
 
-if [ ! -d $HOME/.oh-my-zsh/ ]; then
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
     # TODO: get oh-my-zsh
     echo "get oh-my-zsh"
 else
-    mv $HOME/.oh-my-zsh/custom/aliases.zsh $olddir/.oh-my-zsh/custom/
-    mv  $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme  $olddir/.oh-my-zsh/themes/
-    ln -s -f $dir/aliases.zsh $HOME/.oh-my-zsh/custom/aliases.zsh     
-    ln -s -f $dir/rmcdono.zsh-theme $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme
+    mv "$HOME/.oh-my-zsh/custom/aliases.zsh" $olddir/.oh-my-zsh/custom/
+    mv " $HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"  $olddir/.oh-my-zsh/themes/
+    ln -s -f $dir/aliases.zsh "$HOME/.oh-my-zsh/custom/aliases.zsh"
+    ln -s -f $dir/rmcdono.zsh-theme "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"
 fi
-if [ ! -d $HOME/.vim/bundles/vundle ]; then
+if [ ! -d "$HOME/.vim/bundles/vundle" ]; then
     # get vundle
     echo get vundle
 fi
+# Link vim ftplugin
+ln -s ./vim/ftplugin "$HOME/.vim/ftplugin"
 
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
+
+pushd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
+    mv ~/".$file" ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    ln -s "$dir/$file" ~/".$file"
 done
 
+popd
