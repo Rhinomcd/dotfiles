@@ -4,7 +4,7 @@ if [[ -e "$HOME/.LS_COLORS" ]]; then
     eval "$(cat "$HOME/.LS_COLORS")"
 fi
 
-plugins=(git)
+plugins=(git docker)
 source "$ZSH/oh-my-zsh.sh"
 export GOROOT="$HOME/local/go"
 export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/bin"
@@ -27,12 +27,15 @@ if [[ !  -z "$(command -v thefuck)" ]]; then
 fi
 
 # Source ZSH Plugins/overrides 
-OVERRIDE_DIR=".zsh.overrides"
+OVERRIDE_DIR="$HOME/.zsh_overrides"
 if [[ -d "$OVERRIDE_DIR" ]];then
     echo > .zsh_overrides.txt
-    for i in "$OVERRIDE_DIR"/*
+    for i in "$OVERRIDE_DIR"/*.zsh
     do
         source $i
         echo "$i" >> .zsh_overrides.txt
     done
 fi
+
+alias vim='nvim'
+export PATH="/usr/local/sbin:$PATH"

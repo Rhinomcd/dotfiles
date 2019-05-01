@@ -1,14 +1,13 @@
 if !exists("g:syntax_on")
     syntax enable
 endif
-set history=100
 set hidden
 set number
 set incsearch
 set cindent
 set wrap
+set autoread
 au VimEnter * if &diff | execute 'windo set wrap' | endif
-colorscheme desert
 
 nmap <leader>g :GitGutterLineHighlightsToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
@@ -36,12 +35,22 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'W0rp/ale'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'chrisbra/csv.vim'
+Plugin 'junegunn/fzf'
+Plugin 'joonty/vdebug'
+Plugin 'tpope/vim-dispatch'
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
 call vundle#end()
+let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
 
 " Better Vimdiff colors
@@ -52,6 +61,8 @@ hi DiffText         ctermbg=235  ctermfg=208  guibg=#262626 guifg=#ff8700 cterm=
 set backspace=2
 set encoding=utf-8
 set laststatus=2
+
+colorscheme desert
 
 "" Flake8 Settings
 let g:flake8_cmd="flake8"
@@ -65,10 +76,9 @@ let g:ycm_python_binary_path = 'python'
 "" ALE settings
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '👮'
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '~'
 highlight clear ALEErrorSign
-highlight clear ALEWarningSign
  
 
 "" Airline settings
