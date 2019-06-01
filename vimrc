@@ -32,8 +32,6 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-<<<<<<< HEAD
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'W0rp/ale'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -50,11 +48,6 @@ else
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 Plugin 'sheerun/vim-polyglot'
-=======
-Plugin 'W0rp/ale'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
->>>>>>> 15fd8e745c97794a9eddf67bd66cb490591e8fdc
 call vundle#end()
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
@@ -104,22 +97,9 @@ autocmd BufWrite *.tuc :call UnSplitTU4R()
 
 "" Airline settings
 let g:airline#extensions#ale#enabled = 1
--
 
 let vim_markdown_preview_github=1
 runtime macros/matchit.vim
-
-
-function SplitTU4R()
-    %s/\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\r\1/g
-endfunction
-
-function UnSplitTU4R()
-    %s/\n\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\1/g
-endfunction
-
-autocmd BufRead *.tuc :call SplitTU4R()
-autocmd BufWrite *.tuc :call UnSplitTU4R()
 
 autocmd Filetype sh setlocal tabstop=3 expandtab shiftwidth=3
 
