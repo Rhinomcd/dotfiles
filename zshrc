@@ -27,12 +27,14 @@ if [[ !  -z "$(command -v thefuck)" ]]; then
 fi
 
 # Source ZSH Plugins/overrides 
-OVERRIDE_DIR=".zsh.overrides"
+OVERRIDE_DIR=".zsh_overrides"
 if [[ -d "$OVERRIDE_DIR" ]];then
-    echo > .zsh_overrides.txt
+    echo -n > .zsh_overrides.txt
     for i in "$OVERRIDE_DIR"/*
     do
-        source $i
+        source "$i"
         echo "$i" >> .zsh_overrides.txt
     done
 fi
+export TMOUT=48000
+alias sand='cd /opt/persistent/dev/code/users/rmcdono/sandbox/private/enalerts'
