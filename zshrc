@@ -11,13 +11,6 @@ export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/V
 export PATH="$PYTHON3_BIN:$$HOME/.local/bin:GOROOT/bin:$HOME/local/bin:~/SDK/groovy-3.0.0-alpha-1/bin:$PATH"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
-# Name Tmux window SSH target
-ssh() {
-    if [ ! -z "$TMUX" ]; then
-        tmux rename-window "$*"
-    fi
-    command ssh "$@"
-}
 export JBOSS_HOME="$HOME/WildFLy/latest"
 
 # https://github.com/nvbn/thefuck 
@@ -29,7 +22,7 @@ fi
 # Source ZSH Plugins/overrides 
 OVERRIDE_DIR="$HOME/.zsh_overrides"
 if [[ -d "$OVERRIDE_DIR" ]];then
-    echo > .zsh_overrides.txt
+    echo > "$HOME/.zsh_overrides.txt"
     for i in "$OVERRIDE_DIR"/*.zsh
     do
         source $i
@@ -39,3 +32,5 @@ fi
 
 alias vim='nvim'
 export PATH="/usr/local/sbin:$PATH"
+
+[ -s "/Users/rmcdono/.jabba/jabba.sh" ] && source "/Users/rmcdono/.jabba/jabba.sh"

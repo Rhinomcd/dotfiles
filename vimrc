@@ -2,7 +2,7 @@ if !exists("g:syntax_on")
     syntax enable
 endif
 set hidden
-set number
+set relativenumber number
 set incsearch
 set cindent
 set wrap
@@ -42,6 +42,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'junegunn/fzf'
 Plugin 'joonty/vdebug'
 Plugin 'tpope/vim-dispatch'
+Plugin 'nicwest/vim-http'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -49,6 +51,7 @@ else
   Plugin 'roxma/nvim-yarp'
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
+Plugin 'sheerun/vim-polyglot'
 call vundle#end()
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
@@ -80,11 +83,22 @@ let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '~'
 highlight clear ALEErrorSign
  
+function SplitTU4R()
+    %s/\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\r\1/g
+endfunction
+
+function UnSplitTU4R()
+    %s/\n\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\1/g
+endfunction
+
+autocmd BufRead *.tuc :call SplitTU4R()
+autocmd BufWrite *.tuc :call UnSplitTU4R()
 
 "" Airline settings
 let g:airline#extensions#ale#enabled = 1
 -
 
+let vim_markdown_preview_github=1
 runtime macros/matchit.vim
 
 
