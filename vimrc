@@ -9,9 +9,6 @@ set wrap
 set autoread
 au VimEnter * if &diff | execute 'windo set wrap' | endif
 
-nmap <leader>g :GitGutterLineHighlightsToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -35,6 +32,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+<<<<<<< HEAD
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'W0rp/ale'
 Plugin 'tpope/vim-surround'
@@ -52,9 +50,17 @@ else
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
 Plugin 'sheerun/vim-polyglot'
+=======
+Plugin 'W0rp/ale'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+>>>>>>> 15fd8e745c97794a9eddf67bd66cb490591e8fdc
 call vundle#end()
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
+nmap <leader>g :GitGutterLineHighlightsToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
+
 
 " Better Vimdiff colors
 hi DiffAdd          ctermbg=235  ctermfg=108  guibg=#262626 guifg=#87af87 cterm=reverse        gui=reverse
@@ -70,6 +76,8 @@ colorscheme desert
 "" Flake8 Settings
 let g:flake8_cmd="flake8"
 let g:flake8_show_in_file=1  " show
+autocmd FileType python map <buffer> <F8> :call Flake8()<CR>
+
 
 "" YCM Settings
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
@@ -101,6 +109,19 @@ let g:airline#extensions#ale#enabled = 1
 let vim_markdown_preview_github=1
 runtime macros/matchit.vim
 
+
+function SplitTU4R()
+    %s/\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\r\1/g
+endfunction
+
+function UnSplitTU4R()
+    %s/\n\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\1/g
+endfunction
+
+autocmd BufRead *.tuc :call SplitTU4R()
+autocmd BufWrite *.tuc :call UnSplitTU4R()
+
+autocmd Filetype sh setlocal tabstop=3 expandtab shiftwidth=3
 
 " Put these lines at the very end of your vimrc file.
 
