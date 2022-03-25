@@ -27,8 +27,9 @@ fi;
 
 if [ -f "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme" ]; then
     mv "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme" "$olddir/.oh-my-zsh/themes/rmcdono.zsh-theme"
-    ln -s -f "$dir/rmcdono.zsh-theme" "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"
 fi
+
+ln -s -f "$dir/rmcdono.zsh-theme" "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"
 
 if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
