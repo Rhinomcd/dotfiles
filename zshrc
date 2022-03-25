@@ -30,7 +30,6 @@ if [[ -d "$OVERRIDE_DIR" ]];then
     done
 fi
 
-alias vim='nvim'
 export PATH="/usr/local/sbin:$PATH"
 
 [ -s "/Users/rmcdono/.jabba/jabba.sh" ] && source "/Users/rmcdono/.jabba/jabba.sh"

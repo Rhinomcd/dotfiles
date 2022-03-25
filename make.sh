@@ -53,4 +53,6 @@ for file in $files; do
     ln -s "$dir/$file" "$HOME/.$file"
 done
 
+vim +PluginInstall +qall
+
 popd || exit
