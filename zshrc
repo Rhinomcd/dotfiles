@@ -21,12 +21,13 @@ fi
 
 # Source ZSH Plugins/overrides 
 OVERRIDE_DIR="$HOME/.zsh_overrides"
+OVERRIDE_LIST="$HOME/.zsh_overrides.txt"
 if [[ -d "$OVERRIDE_DIR" ]];then
-    echo > "$HOME/.zsh_overrides.txt"
+    echo > "$OVERRIDE_LIST"
     for i in "$OVERRIDE_DIR"/*.zsh
     do
         source $i
-        echo "$i" >> .zsh_overrides.txt
+        echo "$i" >> "$OVERRIDE_LIST"
     done
 fi
 
