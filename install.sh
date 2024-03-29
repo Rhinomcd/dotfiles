@@ -61,6 +61,8 @@ for file in $files; do
     ln -s -v "$dir/$file" "$HOME/.$file"
 done
 
+pip3 install --user pynvim
+
 vim +PluginInstall +qall
 source ~/.zshrc
 
