@@ -17,5 +17,55 @@ require("lazy").setup({
     config = function()
       vim.cmd.colorscheme('nord')
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "c", "lua", "vim", "vimdoc", "query",
+          "rust", "go",
+          "typescript", "javascript", "json", "yaml",
+          "java", "sql",
+          "python"
+        },
+        textobjects = { 
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = { 
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@function.inner",
+              ["as"] = "@scope",
+            }
+          },
+          selection_modes = {
+            ["@parameter.outer"] = "v",
+            ["@function.outer"] = "V",
+            ["@class.outer"] = "<c-v>",
+          },
+          include_surrounding_whitespace = true,
+        },
+        auto_install = true,
+
+        highlight = {
+          enable = true
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+          },
+        },
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
   }
 })
