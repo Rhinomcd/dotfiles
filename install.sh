@@ -10,7 +10,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="zsh_overrides pylintrc gitconfig vimrc zshrc tmux.conf LS_COLORS tcshrc minttyrc"
+files="zsh_overrides pylintrc gitconfig vimrc zshrc tmux.conf LS_COLORS tcshrc minttyrc p10k.zsh"
 
 ##########
 
@@ -25,15 +25,23 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi;
 
-if [ -f "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme" ]; then
-    mv "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme" "$olddir/.oh-my-zsh/themes/rmcdono.zsh-theme"
-fi
-
-ln -s -f "$dir/rmcdono.zsh-theme" "$HOME/.oh-my-zsh/themes/rmcdono.zsh-theme"
-
 if [ ! -d "$HOME/.vim/bundle/vundle" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+
+# fzf
+if ! command -v fzf; then 
+   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+   ~/.fzf/install
+fi
+
+if [[ ! -d  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then 
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
 
 # Link vim ftplugin
 ln -s ./vim/ftplugin "$HOME/.vim/ftplugin"
@@ -54,5 +62,6 @@ for file in $files; do
 done
 
 vim +PluginInstall +qall
+source ~/.zshrc
 
 popd || exit
