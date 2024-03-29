@@ -64,8 +64,6 @@ set backspace=2
 set encoding=utf-8
 set laststatus=2
 
-colorscheme desert
-
 "" Flake8 Settings
 let g:flake8_cmd="flake8"
 let g:flake8_show_in_file=1  " show
