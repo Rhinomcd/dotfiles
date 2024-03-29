@@ -44,6 +44,12 @@ if [[ ! -d  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; t
    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+if ! command -v nvim; then
+   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+   sudo rm -rf /opt/nvim
+   sudo tar -C /opt -xzf nvim-linux64.tar.gz
+fi
+
 
 # Link vim ftplugin
 ln -s ./vim/ftplugin "$HOME/.vim/ftplugin"
