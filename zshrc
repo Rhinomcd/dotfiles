@@ -24,6 +24,7 @@ export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/V
 export PATH="$PYTHON3_BIN:$$HOME/.local/bin:GOROOT/bin:$HOME/local/bin:~/SDK/groovy-3.0.0-alpha-1/bin:$PATH"
 export PATH="/${HOME}/.local/lib/python3.10/site-packages:/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/${HOME}/.local/bin:$PATH"
+export PATH="/${HOME}/.fzf/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
