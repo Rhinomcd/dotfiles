@@ -38,6 +38,8 @@ if ! command -v fzf; then
    ~/.fzf/install
 fi
 
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
 if [[ ! -d  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then 
    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
@@ -61,9 +63,6 @@ for file in $files; do
     ln -s -v "$dir/$file" "$HOME/.$file"
 done
 
-pip3 install --user pynvim
-
 vim +PluginInstall +qall
-source ~/.zshrc
 
 popd || exit

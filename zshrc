@@ -22,7 +22,8 @@ source "$ZSH/oh-my-zsh.sh"
 export GOROOT="$HOME/local/go"
 export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/bin"
 export PATH="$PYTHON3_BIN:$$HOME/.local/bin:GOROOT/bin:$HOME/local/bin:~/SDK/groovy-3.0.0-alpha-1/bin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/${HOME}/.local/lib/python3.10/site-packages:/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/${HOME}/.local/bin:$PATH"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
 export JBOSS_HOME="$HOME/WildFLy/latest"
@@ -61,9 +62,16 @@ case ":$PATH:" in
 esac
 # pnpm end
 #
+#
+if command -v nvim; then
+    alias vim=nvim
+    alias vi=nvim
+fi
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
