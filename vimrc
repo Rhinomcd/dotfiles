@@ -84,17 +84,6 @@ let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '~'
 highlight clear ALEErrorSign
  
-function SplitTU4R()
-    %s/\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\r\1/g
-endfunction
-
-function UnSplitTU4R()
-    %s/\n\(TU4R\|ENDS\|PH01\|SH01\|NM01\|AD01\|PN01\|EM01\|SD01\|PR01\|TR01\|SC01\|PI01\|CL01\|CH01\|IN01\|LK01\|SA01\|AO01\|CS01\|SM01\|CI01\)/\1/g
-endfunction
-
-autocmd BufRead *.tuc :call SplitTU4R()
-autocmd BufWrite *.tuc :call UnSplitTU4R()
-
 "" Airline settings
 let g:airline#extensions#ale#enabled = 1
 
