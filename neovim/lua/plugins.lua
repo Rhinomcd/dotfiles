@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
-    "nordtheme/vim", 
+    "nordtheme/vim",
     config = function()
       vim.cmd.colorscheme('nord')
     end,
@@ -29,11 +29,11 @@ require("lazy").setup({
           "java", "sql",
           "python"
         },
-        textobjects = { 
+        textobjects = {
           select = {
             enable = true,
             lookahead = true,
-            keymaps = { 
+            keymaps = {
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["ac"] = "@class.outer",
@@ -67,5 +67,12 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-  }
+  },
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
 })
+
+require('lsp')
+
+
