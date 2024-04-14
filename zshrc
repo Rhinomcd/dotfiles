@@ -17,6 +17,7 @@ plugins=(
     zsh-autosuggestions
     1password
     battery
+    kubectl
     )
 source "$ZSH/oh-my-zsh.sh"
 export GOROOT="$HOME/local/go"
@@ -72,12 +73,16 @@ if command -v nvim >/dev/null; then
 fi
 
 eval "$(fzf --zsh)"
+kubectl completion zsh > "${fpath[1]}/_kubectl"
+
 eval "$(zoxide init zsh --cmd cd)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. "$HOME/.cargo/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
