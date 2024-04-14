@@ -20,7 +20,12 @@ plugins=(
     kubectl
     )
 source "$ZSH/oh-my-zsh.sh"
-export GOROOT="$HOME/local/go"
+export GOPATH=$HOME/go 
+export GOROOT=/usr/local/go 
+export GOBIN=$GOPATH/bin 
+export CGO_CFLAGS="-I/usr/include/x86_64-linux-gnu"
+export PATH=$PATH:$GOPATH 
+export PATH=$PATH:$GOROOT/bin
 export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/bin"
 export PATH="$PYTHON3_BIN:$$HOME/.local/bin:GOROOT/bin:$HOME/local/bin:~/SDK/groovy-3.0.0-alpha-1/bin:$PATH"
 export PATH="/${HOME}/.local/lib/python3.10/site-packages:/usr/local/opt/python/libexec/bin:$PATH"

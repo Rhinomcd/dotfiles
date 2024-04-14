@@ -13,7 +13,7 @@ require("mason-lspconfig").setup {
     "lua_ls",
     "rust_analyzer",
     "pyright",
-    "java_language_server"
+    "gopls"
   }
 }
 

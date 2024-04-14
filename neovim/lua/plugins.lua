@@ -63,6 +63,9 @@ require("lazy").setup({
           },
         },
       })
+
+      local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+      parser_config.home_assistant = parser_config.yaml
     end,
   },
   {
@@ -82,11 +85,8 @@ require("lazy").setup({
     config = function()
       require('dashboard').setup {
         config = {
-
           week_header = {
             enable = true, --boolean use a week header
-            concat = true, --concat string after time string line
-            append = true, --table append after time string line
           },
         }
 
@@ -204,6 +204,43 @@ require("lazy").setup({
         matching = { disallow_symbol_nonprefix_matching = false }
       })
     end
+  },
+  {
+    "neoclide/coc.nvim"
+  },
+  -- init.lua:
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    -- or                              , branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    end
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      -- disable netrw at the very start of your init.lua
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      -- optionally enable 24-bit colour
+      vim.opt.termguicolors = true
+
+      -- empty setup using defaults
+      require("nvim-tree").setup {
+        update_focused_file = { enable = true }
+
+      }
+      local api = require "nvim-tree.api"
+      vim.keymap.set('n', '<C-n>', api.tree.toggle)
+    end
+
   }
 })
 
