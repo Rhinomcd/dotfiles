@@ -272,6 +272,15 @@ require("lazy").setup({
         hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
       end, { remap = true })
     end
+  },
+  {
+    "NTBBloodbath/galaxyline.nvim",
+    -- your statusline
+    config = function()
+      require("galaxyline.themes.eviline")
+    end,
+    -- some optional icons
+    dependencies = { "kyazdani42/nvim-web-devicons", opt = true }
   }
 
 
