@@ -71,6 +71,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
+  "nvim-treesitter/nvim-treesitter-context",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
@@ -241,8 +242,41 @@ require("lazy").setup({
       vim.keymap.set('n', '<C-n>', api.tree.toggle)
     end
 
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
+  "tpope/vim-repeat",
+
+  {
+    'smoka7/hop.nvim',
+    config = function()
+      local hop = require('hop')
+      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
+      -- place this in one of your configuration file(s)
+      local directions = require('hop.hint').HintDirection
+      vim.keymap.set('', 'f', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+      end, { remap = true })
+      vim.keymap.set('', 'F', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+      end, { remap = true })
+      vim.keymap.set('', 't', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+      end, { remap = true })
+      vim.keymap.set('', 'T', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+      end, { remap = true })
+    end
   }
+
+
 })
+
 
 
 require('lsp')
