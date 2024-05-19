@@ -13,7 +13,8 @@ require("mason-lspconfig").setup {
     "lua_ls",
     "rust_analyzer",
     "pyright",
-    "gopls"
+    "marksman",
+    "biome" -- typescript/jsx
   }
 }
 
@@ -24,8 +25,8 @@ require("mason-lspconfig").setup_handlers {
   function(server_name) -- default handler (optional)
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     require("lspconfig")[server_name].setup {
-    capabilities = capabilities
-  }
+      capabilities = capabilities
+    }
   end,
   ["rust_analyzer"] = function() end,
 }
@@ -36,7 +37,7 @@ local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name
-    if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+    if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
       return
     end
 

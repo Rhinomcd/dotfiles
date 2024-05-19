@@ -25,13 +25,14 @@ export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin 
 export CGO_CFLAGS="-I/usr/include/x86_64-linux-gnu"
 export PATH=$PATH:$GOPATH 
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOBIN
 export PYTHON3_BIN="/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/bin"
 export PATH="$PYTHON3_BIN:$$HOME/.local/bin:GOROOT/bin:$HOME/local/bin:~/SDK/groovy-3.0.0-alpha-1/bin:$PATH"
 export PATH="/${HOME}/.local/lib/python3.10/site-packages:/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/${HOME}/.local/bin:$PATH"
-export PATH="/${HOME}/.fzf/bin:$PATH"
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="/${HOME}/.local/bin:${PATH}"
+export PATH="/${HOME}/.fzf/bin:${PATH}"
+export PATH="${PATH}:/opt/nvim-linux64/bin"
+export PATH="${PATH}:/opt/websocat"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
 export JBOSS_HOME="$HOME/WildFLy/latest"
@@ -76,6 +77,8 @@ if command -v nvim >/dev/null; then
     alias vim=nvim
     alias vi=nvim
 fi
+
+source ~/dotfiles/install_neovim.sh
 
 eval "$(fzf --zsh)"
 kubectl completion zsh > "${fpath[1]}/_kubectl"

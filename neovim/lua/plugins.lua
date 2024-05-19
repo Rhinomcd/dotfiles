@@ -27,7 +27,7 @@ require("lazy").setup({
           "rust", "go",
           "typescript", "javascript", "json", "yaml",
           "java", "sql",
-          "python"
+          "python", "markdown"
         },
         textobjects = {
           select = {
@@ -63,9 +63,6 @@ require("lazy").setup({
           },
         },
       })
-
-      local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
-      parser_config.home_assistant = parser_config.yaml
     end,
   },
   {
@@ -280,10 +277,42 @@ require("lazy").setup({
       require("galaxyline.themes.eviline")
     end,
     -- some optional icons
-    dependencies = { "kyazdani42/nvim-web-devicons", opt = true }
-  }
-
-
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
+  "mfussenegger/nvim-dap"
+  ,
+  "leoluz/nvim-dap-go",
+  "theHamsta/nvim-dap-virtual-text",
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+  {
+    "kevinhwang91/nvim-fundo",
+    config = function()
+      require("fundo").install()
+      vim.o.undofile = true
+    end,
+  },
+  -- markdown inline-renderer
+  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+  {
+  "aznhe21/actions-preview.nvim",
+  config = function()
+    vim.keymap.set({ "v", "n" }, "<C-CR>", require("actions-preview").code_actions)
+  end,
+}
 })
 
 

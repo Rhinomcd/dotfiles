@@ -1,0 +1,6 @@
+{
+  "homeassistant.enable" : "true",
+  "homeassistant.hostUrl" : "http://vecna.lan:8123",
+  "homeassistant.longLivedAccessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2OTQ3MzE4YjNiMDY0NzdmYTk5NzRlODg3MmU2MWY1YSIsImlhdCI6MTcxMzA3MjYxMCwiZXhwIjoyMDI4NDMyNjEwfQ.bxK9H89avcTxbDikrICkAWPQbg8RpsYMQk8IrptU4mg"
+}
+  
