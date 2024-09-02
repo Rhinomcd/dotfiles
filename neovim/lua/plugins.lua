@@ -203,9 +203,6 @@ require("lazy").setup({
       })
     end
   },
-  {
-    "neoclide/coc.nvim"
-  },
   -- init.lua:
   {
     'nvim-telescope/telescope.nvim',

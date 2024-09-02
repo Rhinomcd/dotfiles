@@ -12,7 +12,7 @@
   "go.nvim": { "branch": "master", "commit": "db45cc91cf1bedb5fe5640cf71c452d43a87595a" },
   "guihua.lua": { "branch": "master", "commit": "3bbb0aaedad89dc9eb775dbb72c98d7defc95f74" },
   "hop.nvim": { "branch": "master", "commit": "6ff23501a1fd1c75c91dfd99ff5befcfdb02c11d" },
-  "lazy.nvim": { "branch": "main", "commit": "5d29ffeaa0f2d91f1dfbc21943d19a11e59a6fc6" },
+  "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "9ae570e206360e47d30b4c35a4550c165f4ea7b7" },
   "mason.nvim": { "branch": "main", "commit": "49ff59aded1047a773670651cfa40e76e63c6377" },
   "nvim-autopairs": { "branch": "master", "commit": "b0b79e42a28f09719a7da9534c3731fa37319d9b" },
