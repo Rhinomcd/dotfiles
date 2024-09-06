@@ -14,7 +14,8 @@ require("mason-lspconfig").setup {
     "rust_analyzer",
     "pyright",
     "marksman",
-    "biome" -- typescript/jsx
+    "biome",
+    "yamlls"-- typescript/jsregex
   }
 }
 
