@@ -14,7 +14,8 @@ require("mason-lspconfig").setup {
     "rust_analyzer",
     "pyright",
     "marksman",
-    "biome",-- typescript/jsregex
+    "biome", -- typescript/jsregex
+    "tsserver",
     "yamlls"
   }
 }
@@ -25,11 +26,10 @@ require("mason-lspconfig").setup_handlers {
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    require("lspconfig")[server_name].setup {
-      capabilities = capabilities
-    }
-  end,
-  ["rust_analyzer"] = function() end,
+      require("lspconfig")[server_name].setup {
+        capabilities = capabilities
+      }
+  end
 }
 
 
@@ -91,6 +91,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
+
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
@@ -103,7 +104,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<space>f', function()
       vim.lsp.buf.format { async = true }
