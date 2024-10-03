@@ -228,13 +228,13 @@ require("lazy").setup({
       vim.opt.termguicolors = true
 
       local function my_on_attach(bufnr)
-          local api = require "nvim-tree.api"
-          api.config.mappings.default_on_attach(bufnr)
-          vim.keymap.del('n', 's', { buffer = bufnr })
-          vim.keymap.del('n', 'S', { buffer = bufnr })
+        local api = require "nvim-tree.api"
+        api.config.mappings.default_on_attach(bufnr)
+        vim.keymap.del('n', 's', { buffer = bufnr })
+        vim.keymap.del('n', 'S', { buffer = bufnr })
 
-          vim.keymap.set('n', 's', api.node.open.vertical)
-          vim.keymap.set('n', 'S', api.node.open.horizontal)
+        vim.keymap.set('n', 's', api.node.open.vertical)
+        vim.keymap.set('n', 'S', api.node.open.horizontal)
       end
 
       require("nvim-tree").setup {
@@ -324,6 +324,11 @@ require("lazy").setup({
       vim.keymap.set({ "v", "n" }, "<a-cr>", require("actions-preview").code_actions)
     end,
   },
+  'towolf/vim-helm',
+  {
+    "FeiyouG/commander.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" }
+  }
   -- {
   --   "elihunter173/dirbuf.nvim",
   --   config = function()
