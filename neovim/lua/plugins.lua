@@ -227,19 +227,18 @@ require("lazy").setup({
       -- optionally enable 24-bit colour
       vim.opt.termguicolors = true
 
-      local function my_on_attach(bufnr)
-        local api = require "nvim-tree.api"
-        api.config.mappings.default_on_attach(bufnr)
-        vim.keymap.del('n', 's', { buffer = bufnr })
-        vim.keymap.del('n', 'S', { buffer = bufnr })
-
-        vim.keymap.set('n', 's', api.node.open.vertical)
-        vim.keymap.set('n', 'S', api.node.open.horizontal)
-      end
 
       require("nvim-tree").setup {
         update_focused_file = { enable = true },
-        on_attach = my_on_attach
+        on_attach = function(bufnr)
+          local api = require "nvim-tree.api"
+          api.config.mappings.default_on_attach(bufnr)
+          vim.keymap.del('n', 's', { buffer = bufnr })
+          vim.keymap.del('n', 'S', { buffer = bufnr })
+
+          vim.keymap.set('n', 's', api.node.open.vertical)
+          vim.keymap.set('n', 'S', api.node.open.horizontal)
+        end
 
       }
       local api = require "nvim-tree.api"
@@ -328,6 +327,10 @@ require("lazy").setup({
   {
     "FeiyouG/commander.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" }
+  },
+  {
+    "SmiteshP/nvim-navic",
+    dependencies = "neovim/nvim-lspconfig"
   }
   -- {
   --   "elihunter173/dirbuf.nvim",
