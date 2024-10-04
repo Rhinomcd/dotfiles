@@ -232,10 +232,15 @@ require("lazy").setup({
       require("telescope").load_extension('cmdline')
 
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+      local wk = require("which-key")
+
+      wk.add({
+        mode = 'n',
+        { '<leader>ff', builtin.find_files, desc = "find file" },
+        { 'leader>fg',  builtin.live_grep,  desc = "grep" },
+        { '<leader>fb', builtin.buffers,    desc = "find buffers" },
+        { '<leader>fh', builtin.help_tags,  desc = "find help tags" }
+      })
     end
   },
   {
@@ -360,6 +365,25 @@ require("lazy").setup({
       require("chatgpt").setup({
         api_key_cmd = "op read op://programming/chatgptkey/credential --no-newline"
       })
+      local wk = require("which-key")
+      local chatgpt = require('chatgpt')
+      wk.add({
+        mode = { "n", "v" },
+        { "<leader>",  group = "ChatGPT" },
+        { "<leader>a", "<cmd>ChatGPTRun add_tests<CR>",                 desc = "Add Tests" },
+        { "<leader>b", "<cmd>ChatGPTRun fix_bugs<CR>",                  desc = "Fix Bugs" },
+        { "<leader>c", "<cmd>ChatGPT<CR>",                              desc = "ChatGPT" },
+        { "<leader>d", "<cmd>ChatGPTRun docstring<CR>",                 desc = "Docstring" },
+        { "<leader>e", "<cmd>ChatGPTEditWithInstruction<CR>",           desc = "Edit with instruction" },
+        { "<leader>g", "<cmd>ChatGPTRun grammar_correction<CR>",        desc = "Grammar Correction" },
+        { "<leader>k", "<cmd>ChatGPTRun keywords<CR>",                  desc = "Keywords" },
+        { "<leader>l", "<cmd>ChatGPTRun code_readability_analysis<CR>", desc = "Code Readability Analysis" },
+        { "<leader>o", "<cmd>ChatGPTRun optimize_code<CR>",             desc = "Optimize Code" },
+        { "<leader>r", "<cmd>ChatGPTRun roxygen_edit<CR>",              desc = "Roxygen Edit" },
+        { "<leader>s", "<cmd>ChatGPTRun summarize<CR>",                 desc = "Summarize" },
+        { "<leader>t", "<cmd>ChatGPTRun translate<CR>",                 desc = "Translate" },
+        { "<leader>x", "<cmd>ChatGPTRun explain_code<CR>",              desc = "Explain Code" },
+      })
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -383,47 +407,13 @@ require("lazy").setup({
       {
         "<leader>w",
         function()
-          local wk = require("which-key")
-          local chatgpt = require('chatgpt')
-          local c = {
-            name = "ChatGPT",
-            c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-            e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
-            g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
-            t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
-            k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
-            d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
-            a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
-            o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
-            s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
-            fb = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
-            x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
-            r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
-            l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
-          }
-
-          wk.register(c)
-
-          wk.register({
-            p = {
-              name = "ChatGPT",
-              e = {
-                function()
-                  chatgpt.edit_with_instructions()
-                end,
-                "Edit with instructions",
-              },
-            },
-          }, {
-            prefix = "<leader>",
-            mode = "v",
-          })
           wk.show({ global = false })
         end,
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
     config = function()
+
     end
   },
   {
@@ -432,6 +422,103 @@ require("lazy").setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
+  },
+  {
+    "folke/edgy.nvim",
+    dependencies = {
+      {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+      }
+    },
+    event = "VeryLazy",
+    init = function()
+      vim.opt.laststatus = 3
+      vim.opt.splitkeep = "screen"
+    end,
+    opts = {
+      bottom = {
+        -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
+        {
+          ft = "toggleterm",
+          size = { height = 0.4 },
+          -- exclude floating windows
+          filter = function(buf, win)
+            return vim.api.nvim_win_get_config(win).relative == ""
+          end,
+        },
+        {
+          ft = "lazyterm",
+          title = "LazyTerm",
+          size = { height = 0.4 },
+          filter = function(buf)
+            return not vim.b[buf].lazyterm_cmd
+          end,
+        },
+        "Trouble",
+        { ft = "qf",            title = "QuickFix" },
+        {
+          ft = "help",
+          size = { height = 20 },
+          -- only show help buffers
+          filter = function(buf)
+            return vim.bo[buf].buftype == "help"
+          end,
+        },
+        { ft = "spectre_panel", size = { height = 0.4 } },
+      },
+      left = {
+        -- Neo-tree filesystem always takes half the screen height
+        {
+          title = "Neo-Tree",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "filesystem"
+          end,
+          size = { height = 0.5 },
+        },
+        {
+          title = "Neo-Tree Git",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "git_status"
+          end,
+          pinned = true,
+          collapsed = true, -- show window as closed/collapsed on start
+          open = "Neotree position=right git_status",
+        },
+        {
+          title = "Neo-Tree Buffers",
+          ft = "neo-tree",
+          filter = function(buf)
+            return vim.b[buf].neo_tree_source == "buffers"
+          end,
+          pinned = true,
+          collapsed = true, -- show window as closed/collapsed on start
+          open = "Neotree position=top buffers",
+        },
+        {
+          title = function()
+            local buf_name = vim.api.nvim_buf_get_name(0) or "[No Name]"
+            return vim.fn.fnamemodify(buf_name, ":t")
+          end,
+          ft = "Outline",
+          pinned = true,
+          open = "SymbolsOutlineOpen",
+
+        },
+        -- any other neo-tree windows
+        "neo-tree",
+      },
+    },
+    -- amongst your other plugins
+    { 'akinsho/toggleterm.nvim', version = "*", config = true }
   }
   -- {
   --   "elihunter173/dirbuf.nvim",
