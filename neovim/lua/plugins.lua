@@ -71,7 +71,19 @@ require("lazy").setup({
   "nvim-treesitter/nvim-treesitter-context",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim"
+        },
+        opts = { lsp = { auto_attach = true } }
+      }
+    },
+  },
   {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
@@ -208,8 +220,17 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
     -- or                              , branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
+    dependencies = { 'nvim-lua/plenary.nvim'
+    , 'jonarrien/telescope-cmdline.nvim',
+
+    },
+    keys = {
+      { ':', '<cmd>Telescope cmdline<cr>', desc = 'Cmdline' }
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension('cmdline')
+
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
@@ -331,6 +352,86 @@ require("lazy").setup({
   {
     "SmiteshP/nvim-navic",
     dependencies = "neovim/nvim-lspconfig"
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup({
+        api_key_cmd = "op read op://programming/chatgptkey/credential --no-newline"
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    "folke/which-key.nvim",
+    dependencies = {
+      "echasnovski/mini.icons"
+    },
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>w",
+        function()
+          local wk = require("which-key")
+          local chatgpt = require('chatgpt')
+          local c = {
+            name = "ChatGPT",
+            c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+            e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
+            g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+            t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+            k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+            d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+            a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+            o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+            s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+            fb = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+            x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+            r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+            l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+          }
+
+          wk.register(c)
+
+          wk.register({
+            p = {
+              name = "ChatGPT",
+              e = {
+                function()
+                  chatgpt.edit_with_instructions()
+                end,
+                "Edit with instructions",
+              },
+            },
+          }, {
+            prefix = "<leader>",
+            mode = "v",
+          })
+          wk.show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+    config = function()
+    end
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
   }
   -- {
   --   "elihunter173/dirbuf.nvim",
